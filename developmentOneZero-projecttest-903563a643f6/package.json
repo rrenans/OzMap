@@ -4,7 +4,7 @@
   "description": "Project to test the hability of the coop to solve basic problems",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=dev node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "mocha"
   },
   "repository": {
@@ -22,7 +22,10 @@
   "homepage": "https://bitbucket.org/developmentOneZero/fileteste#readme",
   "dependencies": {
     "koa": "^2.13.0",
-    "koa-router": "^9.4.0"
+    "koa-router": "^9.4.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
