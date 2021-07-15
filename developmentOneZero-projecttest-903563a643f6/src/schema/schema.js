@@ -1,0 +1,25 @@
+// Arquivo que faz integração com o Mongo
+
+const mongoose = require('mongoose')
+
+//Define o minimo de campos que o usuário deve ter.
+const schema = new mongoose.Schema({
+    // title: "Schema do Usuario, define como é o usuario, linha 24 do teste",
+    type: "object",
+    required: ['nome', 'email', 'idade'],
+    properties: {
+        nome: {
+            type: 'string'
+        },
+        email: {
+            type: 'string'
+        },
+        idade: {
+            type: 'number',
+            minimum: 18
+        }
+    }
+})
+
+// module.exports = userSchema;
+module.exports = mongoose.model('users', schema)
