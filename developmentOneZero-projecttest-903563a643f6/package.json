@@ -23,6 +23,7 @@
   "dependencies": {
     "koa": "^2.13.0",
     "koa-router": "^9.4.0",
+    "mongoose": "^5.13.2",
     "mysql2": "^2.2.5",
     "sequelize": "^6.6.5",
     "sqlite3": "^5.0.2"
