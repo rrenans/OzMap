@@ -8,7 +8,7 @@
 //https://www.chaijs.com/plugins/chai-json-schema/
 //https://developer.mozilla.org/pt-PT/docs/Web/HTTP/Status (http codes)
 
-const app =  require('../src/index.js');
+const app =  require('../src/index');
 
 const assert = require('assert');
 const chai = require('chai')
@@ -20,6 +20,8 @@ chai.use(chaiJson);
 
 const expect = chai.expect;
 
+const userSchema = require('../src/schema/schema')
+  
 //Inicio dos testes
 
 //este teste é simplesmente pra enteder a usar o mocha/chai
