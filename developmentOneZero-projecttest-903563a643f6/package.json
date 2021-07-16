@@ -22,6 +22,10 @@
   "homepage": "https://bitbucket.org/developmentOneZero/fileteste#readme",
   "dependencies": {
     "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-busboy": "^1.2.0",
+    "koa-ejs": "^4.3.0",
+    "koa-json": "^2.0.2",
     "koa-router": "^9.4.0",
     "mongoose": "^5.13.2",
     "mysql2": "^2.2.5",
