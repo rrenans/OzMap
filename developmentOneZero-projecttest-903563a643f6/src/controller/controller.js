@@ -41,19 +41,29 @@ controller
     const { id } = ctx.params
     console.log(`${id}`)
     ctx.body = `${id} foi apagado do banco de dados`
-    await schema.deleteOne({_id:id})
+    await schema.deleteOne({ _id: id })
   } catch (error) {
     console.log(error)
   }
 })
+/*
+.delete('/del-users/:id', async ctx => {
+  await schema.deleteOne({
+   _id: ctx.params.id
+  })
+  .then(() => {
+    ctx.body = { status: 'Task Deleted!' }
+  })
+  .catch(err => {
+    ctx.body = 'error: ' + err
+  })
+})
+*/
 .put('/upd-users/:id', async (ctx) => {
   try {
     const { id } = ctx.params
     const { nome, email, idade } = ctx.request.body;
-    const user = await schema.findByIdAndUpdate({_id: id}, {nome, email, idade}, {new: true})
-    console.log(user)
-    console.log(ctx.body)
-    console.log(id)
+    await schema.findByIdAndUpdate({_id: id}, {nome, email, idade}, {new: true})
     console.log(`O usuário com id: ${id} foi alterado para ${nome}, ${email}, ${idade}`)    
     ctx.body = `O usuário com id: ${id} foi alterado para ${nome}, ${email}, ${idade}`
   } catch (error) {
