@@ -9,7 +9,8 @@ const koa = new Koa();
 
 const json = require('koa-json')
 const bodyParser = require('koa-bodyparser')
-
+const path = require('path')
+const render = require('koa-ejs')
 // Require das rotas e métodos
 const router = require('./controller/controller')
 
@@ -19,10 +20,17 @@ require('./database/database')
 // todas as configuraçoes devem ser passadas via environment variables
 const PORT = process.env.PORT || 3000;
 
+render(koa, {
+  root: path.join(__dirname, 'pages'),
+  layout: 'layout',
+  viewExt: 'html',
+  debug: false,
+  cache: false
+})
+
 //rota simples pra testar se o servidor está online
 router.get('/', async (ctx) => {
-  ctx.body = `Seu servidor esta rodando em http://localhost:${PORT}`; //http://localhost:3000/
-  console.log(`Seu servidor esta rodando em http://localhost:${PORT}`)
+  await ctx.render('index') //http://localhost:3000/
 })
 
 koa
