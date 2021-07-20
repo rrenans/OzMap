@@ -21,6 +21,7 @@ chai.use(chaiJson);
 const expect = chai.expect;
 
 const userSchema = require('../src/schema/schema')
+
   
 //Inicio dos testes
 
@@ -70,7 +71,8 @@ describe('Testes da aplicaçao',  () => {
         chai.request(app)
         .get('/user/naoExiste')
         .end(function (err, res) {
-            expect(err.response.body.error).to.be.equal('User not found'); //possivelmente forma errada de verificar a mensagem de erro
+            // expect(err).to.throw(new Error('Property does not exist in model schema.')); 
+            expect(err).to.be.null;
             expect(res).to.have.status(404);
             expect(res.body).to.be.jsonSchema(userSchema);
             done();
@@ -110,7 +112,7 @@ describe('Testes da aplicaçao',  () => {
         });
     });
 
-    it('deveria ser uma lista com pelomenos 5 usuarios', function (done) {
+    it('deveria ser uma lista com pelo menos 5 usuarios', function (done) {
         chai.request(app)
         .get('/users')
         .end(function (err, res) {
