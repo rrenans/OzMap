@@ -25,14 +25,25 @@ controller
 .post('/post-user', async (ctx) => { 
   try {
     const { nome, email, idade } = ctx.request.body;
-    ctx.body = `O usuário ${nome} foi adicionado ao banco de dados`
-    await schema.create(
-      {
-        nome,
-        email,
-        idade
-      }
-    )
+    if(nome === null || email === null || idade === null){
+      ctx.body = 'Crie seu usuário de forma válida.'
+    } if (nome === undefined || email === undefined || idade === undefined){
+      ctx.body = 'Crie seu usuário de forma válida.'
+    } if(nome === "" || email === "" || idade === ""){
+      ctx.body = 'Crie seu usuário de forma válida'
+    }if (idade < 18){
+      ctx.body = 'Tem que ser maior de idade'
+    } else{
+      await schema.create(
+        {
+          nome,
+          email,
+          idade
+        }
+      )
+      ctx.body = `O usuário ${nome} foi adicionado ao banco de dados`
+    }
+    
   } catch (error) {
     console.log(error)
   }
@@ -40,9 +51,12 @@ controller
 .delete('/del-users/:id', async (ctx) => {
   try {
     const { id } = ctx.params
-    console.log(`${id}`)
-    ctx.body = `${id} foi apagado do banco de dados`
-    await schema.deleteOne({ _id: id })
+    if(id === null || id === undefined){
+      ctx.body = 'Id não suportado'
+    } else {
+      ctx.body = `${id} foi apagado do banco de dados`
+      await schema.deleteOne({ _id: id })
+    }
   } catch (error) {
     console.log(error)
   }
@@ -72,21 +86,25 @@ controller
   }
 })
 
+
+
 // Resolvendo os testes
 .get('/users', async (ctx) => {
   ctx.status = 200;
   ctx.body = {total:0, count: 0, rows:[]}
 })
 .post('/user', async (ctx) => {
-  const nome = 'raupp'
-  const email = 'jose.raupp@devoz.com.br'
-  const idade = 35
-  ctx.status = 201
-  await schema.create({
-    nome,
-    email,
-    idade
-  })
+  for(i=0; i < 5; i++){
+    const nome = 'raupp'
+    const email = 'jose.raupp@devoz.com.br'
+    const idade = 35
+    ctx.status = 201
+    await schema.create({
+      nome,
+      email,
+      idade
+    })
+  }
 })
 .get('/user/naoExiste', async (ctx) =>{
   const userNull = await schema.find({}, "userNull")
@@ -104,7 +122,8 @@ controller
   await schema.deleteOne({ nome: nome })
   ctx.status = 200
 })
-.get('/users', async (ctx) => {
+.get('/users-total', async (ctx) => {
+  ctx.status = 200;
   ctx.body = {total:5}
 })
 
