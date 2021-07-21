@@ -17,6 +17,8 @@ const router = require('./controller/controller')
 // Require do banco de dados
 require('./database/database')
 
+// require('./tests/test')
+
 // todas as configuraçoes devem ser passadas via environment variables
 const PORT = process.env.PORT || 3000;
 
