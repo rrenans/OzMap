@@ -7,21 +7,25 @@
 const Koa = require('koa');
 const koa = new Koa();
 
-const json = require('koa-json')
+// const json = require('koa-json')
 const bodyParser = require('koa-bodyparser')
+
+// Importação das dependências que renderizam uma página no navegador
 const path = require('path')
 const render = require('koa-ejs')
+
 // Require das rotas e métodos
 const router = require('./controller/controller')
 
 // Require do banco de dados
 require('./database/database')
 
-// require('./tests/test')
+// require('./tests/test') Era para fazer a requisição dos testes, sem os mesmos terem que passar pelo controller
 
 // todas as configuraçoes devem ser passadas via environment variables
 const PORT = process.env.PORT || 3000;
 
+// Utilizando dependência que faz renderização
 render(koa, {
   root: path.join(__dirname, 'pages'),
   layout: 'layout',
@@ -39,7 +43,6 @@ koa
   .use(bodyParser())
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(json())
 
 const server = koa.listen(PORT);
 

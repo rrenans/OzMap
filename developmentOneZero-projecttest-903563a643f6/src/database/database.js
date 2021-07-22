@@ -49,4 +49,5 @@ class Database {
     }
 }
 
+// Exportação do arquivo
 module.exports = new Database;

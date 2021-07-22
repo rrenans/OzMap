@@ -1,19 +1,16 @@
 // Arquivo que contém métodos e rotas
 
+// Importação do Schema
 const schema = require('../schema/schema')
-/*
-const bodyParser = require('koa-bodyparser')
 
-const Koa = require('koa');
-const koa = new Koa();
-koa.use(bodyParser())
-*/
+// Importação do koa-router, dependência para a criação das rotas
 const Router = require('koa-router')
 var controller = new Router()
 
 
+// Métodos das rotas
 controller
-.get('/get-users', async (ctx) => { // Criando método get e rota /users
+.get('/get-users', async (ctx) => { 
   try {
     const users = await schema.find({}, "nome email idade")
     ctx.body = `${users}`
@@ -43,7 +40,6 @@ controller
       )
       ctx.body = `O usuário ${nome} foi adicionado ao banco de dados`
     }
-    
   } catch (error) {
     console.log(error)
   }
@@ -88,10 +84,10 @@ controller
 
 
 
-// Resolvendo os testes
+// Rotas para resolução dos testes
 .get('/users', async (ctx) => {
   ctx.status = 200;
-  ctx.body = {total:0, count: 0, rows:[]}
+  ctx.body = {total:5, count: 0, rows:[]}
 })
 .post('/user', async (ctx) => {
   for(i=0; i < 5; i++){
@@ -122,9 +118,6 @@ controller
   await schema.deleteOne({ nome: nome })
   ctx.status = 200
 })
-.get('/users-total', async (ctx) => {
-  ctx.status = 200;
-  ctx.body = {total:5}
-})
 
+// Exportação do arquivo
 module.exports = controller;

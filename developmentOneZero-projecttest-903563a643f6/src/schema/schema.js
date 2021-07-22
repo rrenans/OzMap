@@ -38,5 +38,6 @@ const schema = new mongoose.Schema(
     }
 )
 
+// Exportação do arquivo
 // module.exports = userSchema;
 module.exports = mongoose.model('users', schema)

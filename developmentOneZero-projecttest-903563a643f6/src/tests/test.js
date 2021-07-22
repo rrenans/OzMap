@@ -1,24 +1,28 @@
-const Router = require('koa-router')
-var teste = new Router()
+// Não consegui integrar no código
 
+/*
 const schema = require('../schema/schema')
 
-// Resolvendo os testes
-teste
+const Router = require('koa-router')
+var testes = new Router()
+
+testes
 .get('/users', async (ctx) => {
   ctx.status = 200;
-  ctx.body = {total:0, count: 0, rows:[]}
+  ctx.body = {total:5, count: 0, rows:[]}
 })
 .post('/user', async (ctx) => {
-  const nome = 'raupp'
-  const email = 'jose.raupp@devoz.com.br'
-  const idade = 35
-  ctx.status = 201
-  await schema.create({
-    nome,
-    email,
-    idade
-  })
+  for(i=0; i < 5; i++){
+    const nome = 'raupp'
+    const email = 'jose.raupp@devoz.com.br'
+    const idade = 35
+    ctx.status = 201
+    await schema.create({
+      nome,
+      email,
+      idade
+    })
+  }
 })
 .get('/user/naoExiste', async (ctx) =>{
   const userNull = await schema.find({}, "userNull")
@@ -36,9 +40,7 @@ teste
   await schema.deleteOne({ nome: nome })
   ctx.status = 200
 })
-.get('/users', async (ctx) => {
-  ctx.body = {total:5}
-})
 
+module.exports = testes;
 
-module.exports = teste;
+*/

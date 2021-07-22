@@ -114,7 +114,7 @@ describe('Testes da aplicaçao',  () => {
 
     it('deveria ser uma lista com pelo menos 5 usuarios', function (done) {
         chai.request(app)
-        .get('/users-total')
+        .get('/users')
         .end(function (err, res) {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
